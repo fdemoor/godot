@@ -153,6 +153,17 @@ void Node2D::set_position(const Point2 &p_pos) {
 	_change_notify("position");
 }
 
+// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+void Node2D::set_z_height(float p_z) {
+	z_height = p_z;
+	_change_notify("z_height");
+}
+
+float Node2D::get_z_height() const {
+	return z_height;
+}
+// END RADIANT SLOTH GAMES CUSTOMISATION
+
 void Node2D::set_rotation(float p_radians) {
 
 	if (_xform_dirty)
@@ -432,6 +443,11 @@ void Node2D::_bind_methods() {
 
 	ClassDB::bind_method(D_METHOD("set_z_index", "z_index"), &Node2D::set_z_index);
 	ClassDB::bind_method(D_METHOD("get_z_index"), &Node2D::get_z_index);
+	
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	ClassDB::bind_method(D_METHOD("set_z_height", "z_height"), &Node2D::set_z_height);
+	ClassDB::bind_method(D_METHOD("get_z_height"), &Node2D::get_z_height);
+	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	ClassDB::bind_method(D_METHOD("set_z_as_relative", "enable"), &Node2D::set_z_as_relative);
 	ClassDB::bind_method(D_METHOD("is_z_relative"), &Node2D::is_z_relative);
@@ -451,6 +467,10 @@ void Node2D::_bind_methods() {
 	ADD_PROPERTY(PropertyInfo(Variant::VECTOR2, "global_scale", PROPERTY_HINT_NONE, "", 0), "set_global_scale", "get_global_scale");
 	ADD_PROPERTY(PropertyInfo(Variant::TRANSFORM2D, "global_transform", PROPERTY_HINT_NONE, "", 0), "set_global_transform", "get_global_transform");
 
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	ADD_PROPERTY(PropertyInfo(Variant::REAL, "z_height"), "set_z_height", "get_z_height");
+	// END RADIANT SLOTH GAMES CUSTOMISATION
+
 	ADD_GROUP("Z Index", "");
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "z_index", PROPERTY_HINT_RANGE, itos(VS::CANVAS_ITEM_Z_MIN) + "," + itos(VS::CANVAS_ITEM_Z_MAX) + ",1"), "set_z_index", "get_z_index");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "z_as_relative"), "set_z_as_relative", "is_z_relative");
@@ -462,5 +482,10 @@ Node2D::Node2D() {
 	_scale = Vector2(1, 1);
 	_xform_dirty = false;
 	z_index = 0;
+	
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	z_height = 0.0;
+	// END RADIANT SLOTH GAMES CUSTOMISATION
+	
 	z_relative = true;
 }

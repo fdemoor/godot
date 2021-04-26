@@ -42,6 +42,10 @@ class Node2D : public CanvasItem {
 	Size2 _scale;
 	int z_index;
 	bool z_relative;
+	
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	float z_height;
+	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	Transform2D _mat;
 
@@ -76,6 +80,11 @@ public:
 	void set_rotation(float p_radians);
 	void set_rotation_degrees(float p_degrees);
 	void set_scale(const Size2 &p_scale);
+	
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	void set_z_height(float p_z);
+	float get_z_height() const;
+	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	void rotate(float p_radians);
 	void move_x(float p_delta, bool p_scaled = false);
