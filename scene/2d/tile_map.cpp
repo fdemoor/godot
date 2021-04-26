@@ -431,6 +431,10 @@ void TileMap::update_dirty_quadrants() {
 				vs->canvas_item_set_transform(canvas_item, xform);
 				vs->canvas_item_set_light_mask(canvas_item, get_light_mask());
 				vs->canvas_item_set_z_index(canvas_item, z_index);
+				
+				// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+				vs->canvas_item_set_z_height(canvas_item, get_z_height());
+				// END RADIANT SLOTH GAMES CUSTOMISATION
 
 				q.canvas_items.push_back(canvas_item);
 

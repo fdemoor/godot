@@ -156,6 +156,7 @@ void Node2D::set_position(const Point2 &p_pos) {
 // BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 void Node2D::set_z_height(float p_z) {
 	z_height = p_z;
+	VS::get_singleton()->canvas_item_set_z_height(get_canvas_item(), z_height);
 	_change_notify("z_height");
 }
 

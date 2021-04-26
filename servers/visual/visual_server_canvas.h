@@ -53,6 +53,10 @@ public:
 		Transform2D ysort_xform;
 		Vector2 ysort_pos;
 		int ysort_index;
+		
+		// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+		float z_height;
+		// END RADIANT SLOTH GAMES CUSTOMISATION
 
 		Vector<Item *> child_items;
 
@@ -70,6 +74,10 @@ public:
 			ysort_xform = Transform2D();
 			ysort_pos = Vector2();
 			ysort_index = 0;
+			
+			// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+			z_height = 0.0;
+			// END RADIANT SLOTH GAMES CUSTOMISATION
 		}
 	};
 
@@ -84,12 +92,17 @@ public:
 	struct ItemPtrSort {
 
 		_FORCE_INLINE_ bool operator()(const Item *p_left, const Item *p_right) const {
+			
+			// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+			float left_value = p_left->ysort_pos.y + p_left->z_height;
+			float right_value = p_right->ysort_pos.y + p_right->z_height;
 
-			if (Math::is_equal_approx(p_left->ysort_pos.y, p_right->ysort_pos.y)) {
+			if (Math::is_equal_approx(left_value, right_value)) {
 				return p_left->ysort_index < p_right->ysort_index;
 			}
 
-			return p_left->ysort_pos.y < p_right->ysort_pos.y;
+			return left_value < right_value;
+			// END RADIANT SLOTH GAMES CUSTOMISATION
 		}
 	};
 
@@ -211,6 +224,11 @@ public:
 	void canvas_item_add_clip_ignore(RID p_item, bool p_ignore);
 	void canvas_item_set_sort_children_by_y(RID p_item, bool p_enable);
 	void canvas_item_set_z_index(RID p_item, int p_z);
+	
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	void canvas_item_set_z_height(RID p_item, float p_z);
+	// END RADIANT SLOTH GAMES CUSTOMISATION
+	
 	void canvas_item_set_z_as_relative_to_parent(RID p_item, bool p_enable);
 	void canvas_item_set_copy_to_backbuffer(RID p_item, bool p_enable, const Rect2 &p_rect);
 	void canvas_item_attach_skeleton(RID p_item, RID p_skeleton);

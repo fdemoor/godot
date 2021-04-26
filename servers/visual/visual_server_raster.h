@@ -619,6 +619,9 @@ public:
 	BIND2(canvas_item_add_clip_ignore, RID, bool)
 	BIND2(canvas_item_set_sort_children_by_y, RID, bool)
 	BIND2(canvas_item_set_z_index, RID, int)
+	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+	BIND2(canvas_item_set_z_height, RID, float)
+	// END RADIANT SLOTH GAMES CUSTOMISATION
 	BIND2(canvas_item_set_z_as_relative_to_parent, RID, bool)
 	BIND3(canvas_item_set_copy_to_backbuffer, RID, bool, const Rect2 &)
 	BIND2(canvas_item_attach_skeleton, RID, RID)

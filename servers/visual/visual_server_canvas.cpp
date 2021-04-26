@@ -925,6 +925,15 @@ void VisualServerCanvas::canvas_item_set_z_index(RID p_item, int p_z) {
 
 	canvas_item->z_index = p_z;
 }
+// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
+void VisualServerCanvas::canvas_item_set_z_height(RID p_item, float p_z) {
+
+	Item *canvas_item = canvas_item_owner.getornull(p_item);
+	ERR_FAIL_COND(!canvas_item);
+
+	canvas_item->z_height = p_z;
+}
+// END RADIANT SLOTH GAMES CUSTOMISATION
 void VisualServerCanvas::canvas_item_set_z_as_relative_to_parent(RID p_item, bool p_enable) {
 
 	Item *canvas_item = canvas_item_owner.getornull(p_item);
