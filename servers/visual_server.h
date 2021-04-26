@@ -935,6 +935,7 @@ public:
 	virtual void canvas_item_set_z_index(RID p_item, int p_z) = 0;
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	virtual void canvas_item_set_z_height(RID p_item, float p_z) = 0;
+	virtual void canvas_item_set_is_floor(RID p_item, bool p_enabled) = 0;
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 	virtual void canvas_item_set_z_as_relative_to_parent(RID p_item, bool p_enable) = 0;
 	virtual void canvas_item_set_copy_to_backbuffer(RID p_item, bool p_enable, const Rect2 &p_rect) = 0;

@@ -56,6 +56,7 @@ public:
 		
 		// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 		float z_height;
+		bool is_floor;
 		// END RADIANT SLOTH GAMES CUSTOMISATION
 
 		Vector<Item *> child_items;
@@ -77,6 +78,7 @@ public:
 			
 			// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 			z_height = 0.0;
+			is_floor = false;
 			// END RADIANT SLOTH GAMES CUSTOMISATION
 		}
 	};
@@ -94,8 +96,25 @@ public:
 		_FORCE_INLINE_ bool operator()(const Item *p_left, const Item *p_right) const {
 			
 			// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
-			float left_value = p_left->ysort_pos.y + p_left->z_height;
-			float right_value = p_right->ysort_pos.y + p_right->z_height;
+			bool left_floor = p_left->is_floor;
+			bool right_floor = p_right->is_floor;
+			
+			float left_height = p_left->z_height;
+			float right_height = p_right->z_height;
+			
+			if (left_floor) {
+				if ((Math::is_equal_approx(left_height, right_height)) || (left_height < right_height)) {
+					return true;
+				}
+			}
+			if (right_floor) {
+				if ((Math::is_equal_approx(left_height, right_height)) || (left_height > right_height)) {
+					return false;
+				}
+			}
+			
+			float left_value = p_left->ysort_pos.y + left_height;
+			float right_value = p_right->ysort_pos.y + right_height;
 
 			if (Math::is_equal_approx(left_value, right_value)) {
 				return p_left->ysort_index < p_right->ysort_index;
@@ -227,6 +246,7 @@ public:
 	
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	void canvas_item_set_z_height(RID p_item, float p_z);
+	void canvas_item_set_is_floor(RID p_item, bool p_enabled);
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 	
 	void canvas_item_set_z_as_relative_to_parent(RID p_item, bool p_enable);

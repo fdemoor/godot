@@ -45,6 +45,7 @@ class Node2D : public CanvasItem {
 	
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	float z_height;
+	bool is_floor;
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	Transform2D _mat;
@@ -84,6 +85,8 @@ public:
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	void set_z_height(float p_z);
 	float get_z_height() const;
+	void set_is_floor(bool p_enabled);
+	bool get_is_floor() const;
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	void rotate(float p_radians);

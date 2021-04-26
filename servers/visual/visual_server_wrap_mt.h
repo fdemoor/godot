@@ -539,6 +539,7 @@ public:
 	FUNC2(canvas_item_set_z_index, RID, int)
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	FUNC2(canvas_item_set_z_height, RID, float)
+	FUNC2(canvas_item_set_is_floor, RID, bool)
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 	FUNC2(canvas_item_set_z_as_relative_to_parent, RID, bool)
 	FUNC3(canvas_item_set_copy_to_backbuffer, RID, bool, const Rect2 &)

@@ -163,6 +163,15 @@ void Node2D::set_z_height(float p_z) {
 float Node2D::get_z_height() const {
 	return z_height;
 }
+void Node2D::set_is_floor(bool p_enabled) {
+	is_floor = p_enabled;
+	VS::get_singleton()->canvas_item_set_is_floor(get_canvas_item(), is_floor);
+	_change_notify("is_floor");
+}
+
+bool Node2D::get_is_floor() const {
+	return is_floor;
+}
 // END RADIANT SLOTH GAMES CUSTOMISATION
 
 void Node2D::set_rotation(float p_radians) {
@@ -448,6 +457,8 @@ void Node2D::_bind_methods() {
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	ClassDB::bind_method(D_METHOD("set_z_height", "z_height"), &Node2D::set_z_height);
 	ClassDB::bind_method(D_METHOD("get_z_height"), &Node2D::get_z_height);
+	ClassDB::bind_method(D_METHOD("set_is_floor", "is_floor"), &Node2D::set_is_floor);
+	ClassDB::bind_method(D_METHOD("get_is_floor"), &Node2D::get_is_floor);
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	ClassDB::bind_method(D_METHOD("set_z_as_relative", "enable"), &Node2D::set_z_as_relative);
@@ -470,6 +481,7 @@ void Node2D::_bind_methods() {
 
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	ADD_PROPERTY(PropertyInfo(Variant::REAL, "z_height"), "set_z_height", "get_z_height");
+	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "is_floor"), "set_is_floor", "get_is_floor");
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 
 	ADD_GROUP("Z Index", "");
@@ -486,6 +498,7 @@ Node2D::Node2D() {
 	
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	z_height = 0.0;
+	is_floor = false;
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 	
 	z_relative = true;

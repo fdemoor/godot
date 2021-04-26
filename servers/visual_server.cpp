@@ -1989,6 +1989,7 @@ void VisualServer::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("canvas_item_set_z_index", "item", "z_index"), &VisualServer::canvas_item_set_z_index);
 	// BEGIN RADIANT SLOTH GAMES CUSTOMISATION
 	ClassDB::bind_method(D_METHOD("canvas_item_set_z_height", "item", "z_height"), &VisualServer::canvas_item_set_z_height);
+	ClassDB::bind_method(D_METHOD("canvas_item_set_is_floor", "item", "is_floor"), &VisualServer::canvas_item_set_is_floor);
 	// END RADIANT SLOTH GAMES CUSTOMISATION
 	ClassDB::bind_method(D_METHOD("canvas_item_set_z_as_relative_to_parent", "item", "enabled"), &VisualServer::canvas_item_set_z_as_relative_to_parent);
 	ClassDB::bind_method(D_METHOD("canvas_item_set_copy_to_backbuffer", "item", "enabled", "rect"), &VisualServer::canvas_item_set_copy_to_backbuffer);
